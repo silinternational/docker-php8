@@ -44,16 +44,15 @@ RUN curl -o /usr/local/bin/whenavail https://bitbucket.org/silintl/docker-whenav
 
 # Remove default site, configs, and mods not needed
 WORKDIR $HTTPD_PREFIX
-RUN rm -f \
-    	sites-enabled/000-default.conf \
-    	conf-enabled/serve-cgi-bin.conf \
-    	mods-enabled/autoindex.conf \
-    	mods-enabled/autoindex.load
+RUN a2dissite 000-default
+RUN a2disconf serve-cgi-bin
+### WARNING: The following essential module will be disabled.
+### This might result in unexpected behavior and should NOT be done
+### unless you know exactly what you are doing!
+RUN a2dismod autoindex -f
 
 # Enable additional configs and mods
-RUN ln -s $HTTPD_PREFIX/mods-available/expires.load $HTTPD_PREFIX/mods-enabled/expires.load \
-    && ln -s $HTTPD_PREFIX/mods-available/headers.load $HTTPD_PREFIX/mods-enabled/headers.load \
-	&& ln -s $HTTPD_PREFIX/mods-available/rewrite.load $HTTPD_PREFIX/mods-enabled/rewrite.load
+RUN a2enmod expires headers rewrite
 
 # Copy in any additional PHP ini files to the folders where they will be found.
 COPY conf/*.ini /etc/php/8.1/apache2/conf.d/
