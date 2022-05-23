@@ -52,9 +52,7 @@ RUN a2disconf serve-cgi-bin
 RUN a2dismod autoindex -f
 
 # Enable additional configs and mods
-RUN a2enmod expires
-RUN a2enmod headers
-RUN a2enmod rewrite
+RUN a2enmod expires headers rewrite
 
 # Copy in any additional PHP ini files to the folders where they will be found.
 COPY conf/*.ini /etc/php/8.1/apache2/conf.d/
