@@ -79,12 +79,12 @@ CMD ["apache2ctl", "-D", "FOREGROUND"]
 The PHP version is tied to the Ubuntu version, which may delay and/or skip versions of PHP. The monthly build should pick up bug fixes, so no updates to this should be needed. For minor version upgrades, create a new branch, otherwise create a new repository.
 
 1. In the Dockerfile, update the following:
-   - Update ubuntu version in Dockerfile to newest version, 
-     creating that if necessary.
-   - Update ```REFRESHED_AT``` and ```MAINTAINER```, if needed
-   - Update PHP version for config files at bottom of the file
-2. For new repo, do the following:
-   - Create a codeship project and re-encrypt the 
-   ```dockercfg.encrypted``` file
-   - Update Docker Hub to allow pushes
-3. Add the branch to the monthly build
+    - Update ubuntu version in Dockerfile to newest version, 
+      creating that if necessary.
+    - Update ```REFRESHED_AT``` and ```MAINTAINER```, if needed
+    - Update PHP version for config files at bottom of the file
+1. For new repo, do the following:
+    - Create a codeship project and re-encrypt the 
+      ```dockercfg.encrypted``` file
+    - Update Docker Hub to allow pushes
+2. Add the branch to the monthly build
