@@ -54,6 +54,9 @@ RUN a2dismod autoindex -f
 # Enable additional configs and mods
 RUN a2enmod expires headers rewrite
 
+# Remove default ssl key
+RUN rm /etc/ssl/private/*
+
 # Copy in any additional PHP ini files to the folders where they will be found.
 COPY conf/*.ini /etc/php/8.1/apache2/conf.d/
 COPY conf/*.ini /etc/php/8.1/cli/conf.d/
