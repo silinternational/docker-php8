@@ -88,3 +88,5 @@ The PHP version is tied to the Ubuntu version, which may delay and/or skip versi
       ```dockercfg.encrypted``` file
     - Update Docker Hub to allow pushes
 2. Add the branch to the monthly build
+
+----
