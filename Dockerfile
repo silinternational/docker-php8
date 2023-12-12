@@ -40,7 +40,7 @@ RUN apt-get update && apt-get install -y \
 COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 
 # Install whenavail
-RUN curl -o /usr/local/bin/whenavail https://bitbucket.org/silintl/docker-whenavail/raw/1.0.2/whenavail \
+RUN curl -o /usr/local/bin/whenavail https://raw.githubusercontent.com/silinternational/whenavail-script/1.0.2/whenavail \
     && chmod a+x /usr/local/bin/whenavail
 
 # Remove default site, configs, and mods not needed
