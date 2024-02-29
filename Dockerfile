@@ -1,7 +1,7 @@
 FROM silintl/ubuntu:22.04
 LABEL maintainer="jason_jackson@sil.org"
 
-ENV REFRESHED_AT 2022-05-23
+ENV REFRESHED_AT 2024-02-29
 ENV HTTPD_PREFIX /etc/apache2
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -63,6 +63,8 @@ COPY conf/*.ini /etc/php/8.1/apache2/conf.d/
 COPY conf/*.ini /etc/php/8.1/cli/conf.d/
 
 COPY vhost.conf /etc/apache2/sites-enabled/
+
+RUN echo "ServerName 127.0.0.1" >> /etc/apache2/apache2.conf
 
 EXPOSE 80
 
