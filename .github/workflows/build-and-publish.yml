@@ -1,0 +1,37 @@
+name: Build and Publish
+
+on:
+  push:
+  schedule:
+    # cron: Minutes Hours Day-of-month Month Day-of-week
+    # High load times include the start of every hour.
+    # If the load is sufficiently high enough, some queued jobs may be dropped.
+    # To decrease the chance of delay, schedule your workflow to run at a different time of the hour.
+    - cron: "7 1 8 * *"
+
+jobs:
+  build-and-publish:
+    name: Build and Publish
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ vars.DOCKER_ORG }}/php8
+          tags: |
+            # set latest tag for main branch
+            type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'main') }}
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}

@@ -1,4 +1,0 @@
-php8:
-  build:
-    image: silintl/php8
-    dockerfile_path: ./Dockerfile

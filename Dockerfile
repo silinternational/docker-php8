@@ -1,7 +1,7 @@
 FROM silintl/ubuntu:22.04
 LABEL maintainer="jason_jackson@sil.org"
 
-ENV REFRESHED_AT 2024-02-29
+ENV REFRESHED_AT 2024-03-05
 ENV HTTPD_PREFIX /etc/apache2
 ENV DEBIAN_FRONTEND noninteractive
 

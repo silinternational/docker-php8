@@ -34,7 +34,7 @@ going to http://(DOCKER-IP-HERE):port
 
 ```
 FROM silintl/php8
-MAINTAINER Your Name <your_email@domain.com>
+LABEL maintainer="Your Name <your_email@domain.com>"
 
 ENV REFRESHED_AT 2022-05-18
 
@@ -88,10 +88,7 @@ The PHP version is tied to the Ubuntu version, which may delay and/or skip versi
      creating that if necessary.
    - Update `REFRESHED_AT` and `MAINTAINER`, if needed
    - Update PHP version for config files at bottom of the file
-1. For new repo, do the following:
-   - Create a codeship project and re-encrypt the
-     `dockercfg.encrypted` file
-   - Update Docker Hub to allow pushes
-1. Add the branch to the monthly build
+2. For new branch, do the following:
+   - Update default branch in Github to new branch
 
 ---
