@@ -27,7 +27,7 @@ jobs:
           images: ${{ vars.DOCKER_ORG }}/php8
           tags: |
             type=ref,event=branch
-            # set latest tag for main branch
+            # set latest tag for default branch
             type=raw,value=latest,enable={{is_default_branch}}
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
