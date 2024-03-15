@@ -1,9 +1,12 @@
-FROM silintl/ubuntu:22.04
+FROM ubuntu:22.04
 LABEL maintainer="jason_jackson@sil.org"
 
-ENV REFRESHED_AT 2024-03-05
+ENV REFRESHED_AT 2024-03-15
 ENV HTTPD_PREFIX /etc/apache2
 ENV DEBIAN_FRONTEND noninteractive
+
+# Set up default locale environment variables
+ENV LANG="en_US.UTF-8" LANGUAGE="en_US:en" LC_ALL="en_US.UTF-8"
 
 # Install OS packages
 # Specific php versions are not required as ubuntu is feature complete
@@ -12,6 +15,7 @@ RUN apt-get update && apt-get install -y \
     git \
     jq \
     libapache2-mod-php \
+    locales \
     nano \
     netcat \
     php \
@@ -33,8 +37,19 @@ RUN apt-get update && apt-get install -y \
     libssl3 \
     apache2 \
     && phpenmod mcrypt \
+    # Update the /etc/default/locale file
+    # removing locales causes issues
+    && locale-gen en_US.UTF-8 \
+    && update-locale LANG="$LANG" \
+    && update-locale LANGUAGE="$LANGUAGE" \
+    && update-locale LC_ALL="$LC_ALL" \
+    # Clean up to reduce docker image size
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
+
+# Install s3-expand into path
+RUN curl -o /usr/local/bin/s3-expand https://raw.githubusercontent.com/silinternational/s3-expand/master/expand.sh \
+    && chmod a+x /usr/local/bin/s3-expand
 
 # Install composer
 COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
