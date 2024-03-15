@@ -47,16 +47,16 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# Install s3-expand into path
-RUN curl -o /usr/local/bin/s3-expand https://raw.githubusercontent.com/silinternational/s3-expand/master/expand.sh \
-    && chmod a+x /usr/local/bin/s3-expand
-
 # Install composer
 COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 
+# Install s3-expand
+ADD https://raw.githubusercontent.com/silinternational/s3-expand/master/expand.sh /usr/local/bin/s3-expand
+RUN chmod a+x /usr/local/bin/s3-expand
+
 # Install whenavail
-RUN curl -fo /usr/local/bin/whenavail https://raw.githubusercontent.com/silinternational/whenavail-script/1.0.2/whenavail \
-    && chmod a+x /usr/local/bin/whenavail
+ADD https://raw.githubusercontent.com/silinternational/whenavail-script/1.0.2/whenavail /usr/local/bin/whenavail
+RUN chmod a+x /usr/local/bin/whenavail
 
 # Remove default site, configs, and mods not needed
 WORKDIR $HTTPD_PREFIX
