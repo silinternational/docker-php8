@@ -51,7 +51,7 @@ RUN apt-get update && apt-get install -y \
 COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 
 # Install s3-expand
-ADD https://raw.githubusercontent.com/silinternational/s3-expand/master/expand.sh /usr/local/bin/s3-expand
+ADD https://raw.githubusercontent.com/silinternational/s3-expand/master/s3-expand /usr/local/bin/s3-expand
 RUN chmod a+x /usr/local/bin/s3-expand
 
 # Install whenavail
