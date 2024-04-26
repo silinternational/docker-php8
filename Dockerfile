@@ -21,13 +21,13 @@ RUN apt-get update && apt-get install -y \
     php \
     php-cli \
     php-curl \
-    php-dom \
     php-intl \
     php-ldap \
     php-mbstring \
     php-mysql \
     php-sqlite3 \
     php-gmp \
+    php-xml \
     php-zip \
     s3cmd \
     unzip \
