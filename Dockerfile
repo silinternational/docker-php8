@@ -1,7 +1,7 @@
-FROM ubuntu:22.04
+FROM ubuntu:24.04
 LABEL maintainer="jason_jackson@sil.org"
 
-ENV REFRESHED_AT 2024-03-15
+ENV REFRESHED_AT 2024-04-26
 ENV HTTPD_PREFIX /etc/apache2
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -74,8 +74,8 @@ RUN a2enmod expires headers rewrite
 RUN rm /etc/ssl/private/*
 
 # Copy in any additional PHP ini files to the folders where they will be found.
-COPY conf/*.ini /etc/php/8.1/apache2/conf.d/
-COPY conf/*.ini /etc/php/8.1/cli/conf.d/
+COPY conf/*.ini /etc/php/8.3/apache2/conf.d/
+COPY conf/*.ini /etc/php/8.3/cli/conf.d/
 
 COPY vhost.conf /etc/apache2/sites-enabled/
 
