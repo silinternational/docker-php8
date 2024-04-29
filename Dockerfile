@@ -17,13 +17,14 @@ RUN apt-get update && apt-get install -y \
     libapache2-mod-php \
     locales \
     nano \
-    netcat \
+    netcat-openbsd \
     php \
     php-cli \
     php-curl \
     php-intl \
     php-ldap \
     php-mbstring \
+    php-mcrypt \
     php-mysql \
     php-sqlite3 \
     php-gmp \
