@@ -81,6 +81,9 @@ COPY vhost.conf /etc/apache2/sites-enabled/
 
 RUN echo "ServerName 127.0.0.1" >> /etc/apache2/apache2.conf
 
+ADD https://github.com/silinternational/config-shim/releases/download/v1.0.0/config-shim.gz config-shim.gz
+RUN gzip -d config-shim.gz && chmod 755 config-shim && mv config-shim /usr/local/bin
+
 EXPOSE 80
 
 # By default, simply start apache.
