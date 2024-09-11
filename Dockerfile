@@ -53,11 +53,11 @@ COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 
 # Install s3-expand
 ADD https://raw.githubusercontent.com/silinternational/s3-expand/master/s3-expand /usr/local/bin/s3-expand
-RUN chmod a+x /usr/local/bin/s3-expand
+RUN chmod a+rx /usr/local/bin/s3-expand
 
 # Install whenavail
 ADD https://raw.githubusercontent.com/silinternational/whenavail-script/1.0.2/whenavail /usr/local/bin/whenavail
-RUN chmod a+x /usr/local/bin/whenavail
+RUN chmod a+rx /usr/local/bin/whenavail
 
 # Remove default site, configs, and mods not needed
 WORKDIR $HTTPD_PREFIX
@@ -81,6 +81,9 @@ COPY conf/*.ini /etc/php/8.3/cli/conf.d/
 COPY vhost.conf /etc/apache2/sites-enabled/
 
 RUN echo "ServerName 127.0.0.1" >> /etc/apache2/apache2.conf
+
+ADD https://github.com/silinternational/config-shim/releases/download/v1.0.0/config-shim.gz config-shim.gz
+RUN gzip -d config-shim.gz && chmod 755 config-shim && mv config-shim /usr/local/bin
 
 EXPOSE 80
 
