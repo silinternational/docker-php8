@@ -1,7 +1,8 @@
 name: Build and Publish
 
 on: 
-  push:
+  push: 
+    branches: [ '8.*' ]
   schedule:
     # High load times include the start of every hour.
     # If the load is sufficiently high enough, some queued jobs may be dropped.
@@ -24,9 +25,9 @@ jobs:
       - name: Log in to GHCR
         uses: docker/login-action@v3
         with:
-            registry: ghcr.io
-            username: ${{ github.actor }}
-            password: ${{ secrets.GITHUB_TOKEN }}
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}  
       - name: Extract metadata (tags, labels) for Docker
         id: meta
         uses: docker/metadata-action@v5
