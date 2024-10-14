@@ -1,7 +1,8 @@
 name: Build and Publish
 
 on: 
-  push:
+  push: 
+    branches: ['8.3']
   schedule:
     # High load times include the start of every hour.
     # If the load is sufficiently high enough, some queued jobs may be dropped.
