@@ -36,8 +36,6 @@ going to http://(DOCKER-IP-HERE):port
 FROM silintl/php8
 LABEL maintainer="Your Name <your_email@domain.com>"
 
-ENV REFRESHED_AT 2022-05-18
-
 # Copy an Apache vhost file into sites-enabled. This should map
 # the document root to whatever is right for your app
 COPY vhost-config.conf /etc/apache2/sites-enabled/
