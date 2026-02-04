@@ -1,4 +1,4 @@
-# Docker Image: silintl/php8
+# Docker Image: ghcr.io/sil-org/php8
 
 Please submit a pull request or create an issue if you need another
 module or package included or have other suggestions. The default
@@ -16,7 +16,7 @@ make this more thorough and easy for people to get started with.
 2. Start the Docker host - on Linux just start the docker service.
    On Mac or Windows launch Docker Desktop, but be mindful that if
    creating a private repo, you will need a paid Docker Desktop license.
-3. Download this Docker image by running: `docker pull silintl/php8`
+3. Download this Docker image by running: `docker pull ghcr.io/sil-org/php8`
 4. Now you'll need to incorporate your application. The easiest way
    to do that is to create a simple Dockerfile for your project
    that is based on this image. See below for an example.
@@ -33,7 +33,7 @@ going to http://(DOCKER-IP-HERE):port
 ## Example Dockerfile for your application
 
 ```
-FROM silintl/php8
+FROM ghcr.io/sil-org/php8
 LABEL maintainer="Your Name <your_email@domain.com>"
 
 # Copy an Apache vhost file into sites-enabled. This should map
