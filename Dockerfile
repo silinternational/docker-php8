@@ -80,14 +80,6 @@ RUN echo "ServerName 127.0.0.1" >> /etc/apache2/apache2.conf
 ADD --checksum=sha256:d1abb627dafba51a0af0aec9c05d565cca04ba4449112503429a687b4831a138 \
   https://github.com/sil-org/config-shim/releases/download/v1.3.3/config-shim.gz config-shim.gz
 
-RUN <<'EOF' bash -e
-sha256sum --check checksums.txt
-gzip -d config-shim.gz
-chmod 755 config-shim
-mv config-shim /usr/local/bin
-rm checksums.txt
-EOF
-
 EXPOSE 80
 
 # By default, simply start apache.
