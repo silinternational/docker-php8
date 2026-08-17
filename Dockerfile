@@ -77,8 +77,8 @@ COPY vhost.conf /etc/apache2/sites-enabled/
 
 RUN echo "ServerName 127.0.0.1" >> /etc/apache2/apache2.conf
 
-ADD https://github.com/sil-org/config-shim/releases/download/v1.3.2/checksums.txt checksums.txt
-ADD https://github.com/sil-org/config-shim/releases/download/v1.3.2/config-shim.gz config-shim.gz
+ADD --checksum=sha256:d1abb627dafba51a0af0aec9c05d565cca04ba4449112503429a687b4831a138 \
+  https://github.com/sil-org/config-shim/releases/download/v1.3.3/config-shim.gz config-shim.gz
 
 RUN <<'EOF' bash -e
 sha256sum --check checksums.txt
